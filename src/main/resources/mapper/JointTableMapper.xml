@@ -12,4 +12,14 @@
         WHERE
             ur.user_id = #{userId}
     </select>
+    <select id="selectRolesByUserId" resultType="java.lang.String">
+        SELECT
+            r.role_key
+        FROM
+            `t_role` r
+                LEFT JOIN `t_user_role` ur ON r.role_id = ur.role_id
+                LEFT JOIN `t_user` u ON ur.user_id = u.id
+        WHERE
+            u.id = #{userId}
+    </select>
 </mapper>

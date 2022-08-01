@@ -44,9 +44,15 @@ public class LoginUser implements UserDetails, Serializable {
      */
     private Set<String> permissions;
 
-    public LoginUser(User user, Set permissions) {
+    /**
+     * 角色
+     */
+    private Set<String> roles;
+
+    public LoginUser(User user, Set permissions, Set roles) {
         this.user = user;
         this.permissions = permissions;
+        this.roles = roles;
     }
 
     @JSONField(serialize = false)

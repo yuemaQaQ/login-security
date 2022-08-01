@@ -14,4 +14,11 @@ public interface JointTableMapper {
      * @return
      */
     Set<String> selectPermsByUserId(Long userId);
+
+    /**
+     * 根据用户ID查询对应的权角色标识
+     * @param userId
+     * @return
+     */
+    Set<String> selectRolesByUserId(Long userId);
 }

@@ -41,15 +41,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new RuntimeException("用户名或密码错误");
         }
         User user = userList.get(0);
-        //TODO 查询所对应的权限
+        //查询所对应的权限
         Set<String> permissions = new HashSet<>();
-        //permissions.add("test");
-        //permissions.add("admin");
         if (user.getId() == 1L) {
             permissions.add("*:*:*");
         }else {
             permissions = jointTableMapper.selectPermsByUserId(user.getId());
         }
-        return new LoginUser(user, permissions);
+        //查询所对应的角色
+        Set<String> roles;
+        roles = jointTableMapper.selectRolesByUserId(user.getId());
+        return new LoginUser(user, permissions, roles);
     }
 }
